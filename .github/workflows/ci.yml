@@ -1,0 +1,22 @@
+name: CI/CD Dev Branch
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  # --- Lint PHP ---
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run PHP lint
+        run: |
+          for file in $(find . -name "*.php"); do
+            php -l "$file"
+          done
+
+          
