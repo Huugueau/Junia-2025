@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: localhost:5000/app-mysql:1.0
+    container_name: mysql-croupier
+    environment:
+      MYSQL_ROOT_PASSWORD: C7zqUqB7fKnbzz
+      MYSQL_DATABASE: croupier
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./MySQL/croupier.sql:/docker-entrypoint-initdb.d/croupier.sql
+
+  php:
+    image: localhost:5000/app-nginx:1.0
+    container_name: app_nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    volumes:
+     - ./App/sources:/var/www/html
+     - ./App/nginx.conf:/etc/nginx/sites-enabled/default
