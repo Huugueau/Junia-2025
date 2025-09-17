@@ -20,7 +20,7 @@ COPY ./sources /var/www/html
 # Copier la config Nginx
 COPY ./nginx.conf /etc/nginx/sites-enabled/default
 
-COPY wait-for-it.sh /usr/local/bin/wait-for-it.sh
+COPY ./wait-for-it.sh /usr/local/bin/wait-for-it.sh
 RUN chmod +x /usr/local/bin/wait-for-it.sh
 
 # Exposer le port 80
