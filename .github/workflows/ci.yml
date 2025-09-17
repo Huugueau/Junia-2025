@@ -2,8 +2,7 @@ name: CI/CD Dev Branch
 
 on:
   push:
-    branches:
-      - dev
+    branches: [ dev ]
 
 jobs:
   # --- Lint PHP ---
@@ -19,4 +18,3 @@ jobs:
             php -l "$file"
           done
 
-          
