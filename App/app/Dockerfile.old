@@ -1,0 +1,17 @@
+FROM php:8.2-fpm
+
+# Installer Nginx
+RUN apt-get update && apt-get install -y nginx
+
+# Copier ton site PHP
+WORKDIR /var/www/html
+COPY ./sources .
+
+# Copier la config Nginx
+COPY ./nginx.conf /etc/nginx/
+
+# Script pour démarrer les deux services
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+
+CMD ["/start.sh"]
